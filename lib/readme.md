@@ -1,6 +1,6 @@
 # Underpin BerlinDB Extension
 
-[BerlinDB]() Integration for the [Underpin]() WordPress framework.
+[BerlinDB](github.com/berlindb/core/) Integration for the [Underpin](https://github.com/alexstandiford/underpin) WordPress framework.
 
 A few key benefits:
 
