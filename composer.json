@@ -1,0 +1,28 @@
+{
+  "name": "alexstandiford/underpin-berlindb",
+  "description": "BerlinDB Implementation for Underpin",
+  "type": "library",
+  "license": "GPL 2.0",
+  "authors": [
+    {
+      "name": "Alex Standiford",
+      "email": "a@alexstandiford.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/berlindb/core.git",
+      "reference": "release/2.0.0"
+    }
+  ],
+  "require": {
+    "berlindb/core": "dev-release/2.0.0",
+    "alexstandiford/underpin": "1.1.0"
+  },
+  "autoload": {
+    "files": [
+      "underpin-berlin-db.php"
+    ]
+  }
+}
