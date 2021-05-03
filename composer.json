@@ -1,5 +1,5 @@
 {
-  "name": "alexstandiford/underpin-berlindb",
+  "name": "underpin/berlindb-extension",
   "description": "BerlinDB Implementation for Underpin",
   "type": "library",
   "license": "GPL",
