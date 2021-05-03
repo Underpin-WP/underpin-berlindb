@@ -8,6 +8,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Class Service_Locator
+ *
+ * @package Underpin_Berlin_DB
+ * @method Loaders\Database|\WP_Error database
+ */
 class Service_Locator extends Extension {
 
 	protected $file = UNDERPIN_BERLIN_DB_PATH;
@@ -18,12 +24,14 @@ class Service_Locator extends Extension {
 	protected $text_domain         = 'underpin_berlin_db';
 
 	/**
+	 * Shorthand Alias for database.
+	 *
 	 * @param $key
 	 *
 	 * @return Loaders\Database|\WP_Error
 	 */
 	public function db() {
-		return $this->_get_loader('Database');
+		return $this->database();
 	}
 
 	protected function _setup() {

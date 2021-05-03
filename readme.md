@@ -14,7 +14,7 @@ with BerlinDB a little easier helps keep your code DRY.
 
 ### Using Composer
 
-`composer require alexstandiford/underpin-berlin-db`
+`composer require underpin/berlin-db-extension`
 
 ### Manually
 
@@ -30,7 +30,7 @@ this extension, it should work as-expected.
 1. Create and extend the `Database_Model` class
 1. Register your model:
 
-`\Underpin\underpin()->extensions()->get('berlin_db')->db()->add('model_key','Namespace\To\Model_Class')`
+`\Underpin\underpin()->berlin_db()->db()->add('model_key','Namespace\To\Model_Class')`
 
 It is highly recommended that you overload the Model loader with an extended loader. This will register your database
 models into their own registry instead of loading them in the global registry. This is important because install and
