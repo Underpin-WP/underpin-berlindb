@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Underpin_Berlin_DB\\' => array($baseDir . '/src'),
+    'Underpin_BerlinDB\\' => array($baseDir . '/src'),
     'BerlinDB\\' => array($vendorDir . '/berlindb/core/src'),
 );

@@ -6,7 +6,7 @@
  * @package $PACKAGE
  */
 
-namespace Underpin_Berlin_DB\Traits;
+namespace Underpin_BerlinDB\Traits;
 
 use BerlinDB\Database\Table;
 use WP_Error;

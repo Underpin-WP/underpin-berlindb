@@ -13,7 +13,7 @@ class ComposerStaticInitbb3f52c7053c4a7558e7a3b96c9ae06f
     public static $prefixLengthsPsr4 = array (
         'U' => 
         array (
-            'Underpin_Berlin_DB\\' => 19,
+            'Underpin_BerlinDB\\' => 19,
         ),
         'B' => 
         array (
@@ -22,7 +22,7 @@ class ComposerStaticInitbb3f52c7053c4a7558e7a3b96c9ae06f
     );
 
     public static $prefixDirsPsr4 = array (
-        'Underpin_Berlin_DB\\' => 
+        'Underpin_BerlinDB\\' => 
         array (
             0 => __DIR__ . '/../..',
         ),

@@ -1,6 +1,6 @@
 # Underpin BerlinDB Extension
 
-[BerlinDB](https://github.com/berlindb/core/) Integration for the [Underpin](https://github.com/alexstandiford/underpin) WordPress framework.
+[BerlinDB](https://github.com/berlindb/core/) Integration for the [Underpin](https://github.com/underpin-wp/underpin) WordPress framework.
 
 A few key benefits:
 
@@ -25,36 +25,134 @@ this extension, it should work as-expected.
 
 ## Setup
 
-1. Install BerlinDB and Underpin BerlinDB
-1. Create BerlinDB tables, schemas, queries, and rows.
-1. Create and extend the `Database_Model` class
-1. Register your model:
+1. Install [BerlinDB](https://www.github.com/berlindb/core)
+1. Install Underpin. See [Underpin Docs](https://www.github.com/underpin-wp/underpin)
+1. Create BerlinDB classes.
+1. Register new database models as-needed.
 
-`\Underpin\underpin()->berlin_db()->db()->add('model_key','Namespace\To\Model_Class')`
+## Example
 
-It is highly recommended that you overload the Model loader with an extended loader. This will register your database
-models into their own registry instead of loading them in the global registry. This is important because install and
-uninstall functions will impact all items in the registry, and you could inadvertently delete data from other tables.
+If you currently have all BerlinDB classes built, you can reference them directly like-so. This will create a new database
+model called `example`, which can be referenced with `underpin()->berlin_db()->get('example')`.
 
-1. Install BerlinDB and Underpin BerlinDB
-1. Create BerlinDB tables, schemas, queries, and rows.
-1. Create and extend the `Database_Model` class
-1. Create a loader class that extends `Loaders\Database`. It should be saved in the `loaders` directory.
-1. Add that class to your Underpin instance `Service_Locator`
-   
 ```php
-
-//...
-	/**
-	 * Fetches the DB instance
-	 *
-	 * @return Loaders\Database
-	 */
-	public function db() {
-		return $this->_get_loader( 'Database' );
+underpin()->berlin_db()->add( 'example', [
+	'table'             => 'Namespace\To\Berlin_DB\Table',
+	'schema'            => 'Namespace\To\Berlin_DB\Schema',
+	'query'             => 'Namespace\To\Berlin_DB\Query',
+	'name'              => 'Human Readable Table Name',
+	'description'       => 'Description of the purpose of this table',
+	'sanitize_callback' => function( $key, $value ){
+		// Function to sanitize fields before saving.
 	}
-//...
+] );
 ```
-1. Register your model by calling your loader class:
 
-`$this->db()->add( 'test', 'Plugin_Name_Replace_Me\Database\Models\Test' );`
+Alternatively, you can extend `Database_Model` and reference the extended class directly, like so:
+
+```php
+underpin()->berlin_db()->add('database-model-key','Namespace\To\Class');
+```
+
+## Working With the Model
+
+Once registered, you can access any of the classes inside the model using the various helper methods.
+
+```php
+// Run a query using the specified model
+underpin()->berlin_db()->get('example')->query([/*...*/]);
+
+// Get table object
+underpin()->berlin_db()->get('example')->table();
+
+// Get schema
+underpin()->berlin_db()->get('example')->schema();
+```
+
+## Creating, Updating, and Deleting
+
+The model includes a handful of helper functions to make it a little easier to update data.
+
+```php
+// Automatically sanitize, and then create/update a record.
+// If the provided arguments include an ID, it will update that record.
+// Otherwise, it will simply create a new record.
+$id = underpin()->berlin_db()->save( [/*...*/] );
+
+// Delete a record
+$deleted = underpin()->berlin_db()->delete( $id );
+```
+
+## Table Setup
+
+```php
+// Install all tables
+underpin()->berlin_db()->install();
+
+// Reset all tables
+underpin()->berlin_db()->reset();
+
+// Delete all tables
+underpin()->berlin_db()->uninstall();
+```
+
+## Meta Tables
+
+If a database model also has a meta table, it is possible to instruct the model to make that table accessible in the
+model. To-do this, you simply have to use the `Database_Model_With_Meta_Instance` when registering your model.
+
+```php
+// Meta Table
+underpin()->berlin_db()->add( 'example-meta-table', [
+	'table'             => 'Namespace\To\Berlin_DB\Table',
+	'schema'            => 'Namespace\To\Berlin_DB\Schema',
+	'query'             => 'Namespace\To\Berlin_DB\Query',
+	'name'              => 'Human Readable Table Name',
+	'description'       => 'Description of the purpose of this table',
+	'sanitize_callback' => function( $key, $value ){
+		// Function to sanitize fields before saving.
+	}
+] );
+
+// Table
+underpin()->berlin_db()->add( 'example', [
+    'class' => 'Underpin_BerlinDB\Factories\Database_Model_With_Meta_Instance',
+    'args' => [
+       'table'             => 'Namespace\To\Berlin_DB\Table',
+       'schema'            => 'Namespace\To\Berlin_DB\Schema',
+       'query'             => 'Namespace\To\Berlin_DB\Query',
+       'name'              => 'Human Readable Table Name',
+       'description'       => 'Description of the purpose of this table',
+       'sanitize_callback' => function( $key, $value ){
+           // Function to sanitize fields before saving.
+       },
+       'get_meta_table_callback' => function(){
+          return underpin()->berlin_db()->get('example-meta-table');
+       }
+	]
+] );
+```
+
+Alternatively, you can extend `Database_Model`, use the `With_Meta` trait, and then reference the extended class directly,
+like so:
+
+```php
+underpin()->berlin_db()->add('database-model-key','Namespace\To\Class\Using\With_Meta\Trait');
+```
+
+
+With this setup, you now have access to a few other methods from within the `example` model's context.
+
+```php
+//add_meta
+underpin()->berlin_db()->get('example')->add_meta(/*...*/);
+
+//update_meta
+underpin()->berlin_db()->get('example')->update_meta(/*...*/);
+
+//delete_meta
+underpin()->berlin_db()->get('example')->delete_meta(/*...*/);
+
+//get_meta
+underpin()->berlin_db()->get('example')->get_meta(/*...*/);
+```

@@ -7,7 +7,7 @@
  */
 
 
-namespace Underpin_Berlin_DB\Abstracts;
+namespace Underpin_BerlinDB\Abstracts;
 
 
 use \BerlinDB\Database\Schema;
@@ -82,11 +82,23 @@ abstract class Database_Model {
 	protected $errors;
 
 	/**
+	 * Sanitize Callback.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param string $key   The column to sanitize
+	 * @param mixed  $value The value to sanitize
+	 *
+	 * @return mixed
+	 */
+	abstract public function sanitize_callback( $key, $value );
+
+	/**
 	 * Database_Model constructor.
 	 *
 	 * @since 1.0.0
 	 */
-	public function __construct(  ) {
+	public function __construct() {
 
 		$this->errors = new WP_Error();
 
@@ -287,9 +299,10 @@ abstract class Database_Model {
 	 * @since 1.2.3
 	 *
 	 * @param $params
+	 *
 	 * @return mixed
 	 */
-	public function sanitize( $params ) {
+	public function sanitize_items( $params ) {
 		foreach ( $params as $key => $value ) {
 			$params[ $key ] = $this->sanitize_item( $key, $value );
 		}
@@ -315,7 +328,7 @@ abstract class Database_Model {
 				$sanitized[ $value_key ] = $this->sanitize_item( $value_key, $sub_value );
 			}
 		} else {
-			$sanitized = esc_html( $value );
+			$sanitized = $this->sanitize_callback( $key, $value );
 		}
 
 		return $sanitized;
@@ -330,7 +343,7 @@ abstract class Database_Model {
 	 * @return bool|int
 	 */
 	public function save( $params ) {
-		$params = $this->sanitize( $params );
+		$params = $this->sanitize_items( $params );
 
 		if ( isset( $params['id'] ) ) {
 			$id = intval( $params['id'] );

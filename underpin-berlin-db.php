@@ -3,10 +3,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'underpin/before_setup', function ( $class ) {
-	if ( 'Underpin\Underpin' === $class ) {
+add_action( 'underpin/before_setup', function ( $instance ) {
+	if ( ! defined( 'UNDERPIN_BERLIN_DB_PATH' ) ) {
 		define( 'UNDERPIN_BERLIN_DB_PATH', trailingslashit( __DIR__ ) );
-		require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/Service_Locator.php' );
-		Underpin\underpin()->extensions()->add( 'berlin_db', '\Underpin_Berlin_DB\Service_Locator' );
 	}
-} );
+	require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/abstracts/Database_Model.php' );
+	require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/loaders/Database.php' );
+	require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/traits/With_Meta.php' );
+	require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/factories/Database_Model_Instance.php' );
+	require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/factories/Database_Model_With_Meta_Instance.php' );
+
+	Underpin\underpin()->loaders()->add( 'berlin_db', [
+		'registry' => 'Underpin_BerlinDB\Loaders\Database'
+	] );
+}, 20 );
