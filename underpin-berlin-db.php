@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'underpin/before_setup', function ( $instance ) {
+add_action( 'underpin/before_setup', function ( $file ) {
 	if ( ! defined( 'UNDERPIN_BERLIN_DB_PATH' ) ) {
 		define( 'UNDERPIN_BERLIN_DB_PATH', trailingslashit( __DIR__ ) );
 	}
@@ -13,7 +13,7 @@ add_action( 'underpin/before_setup', function ( $instance ) {
 	require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/factories/Database_Model_Instance.php' );
 	require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/factories/Database_Model_With_Meta_Instance.php' );
 
-	$instance->loaders()->add( 'berlin_db', [
+	Underpin\underpin()->get( $file )->loaders()->add( 'berlin_db', [
 		'registry' => 'Underpin_BerlinDB\Loaders\Database'
 	] );
 }, 20 );
