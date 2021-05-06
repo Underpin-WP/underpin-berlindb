@@ -18,7 +18,6 @@
   ],
   "require": {
     "berlindb/core": "dev-release/2.0.0",
-    "underpin/underpin": "1.2.*",
     "underpin/logger-loader": "^1.0"
   },
   "autoload": {
