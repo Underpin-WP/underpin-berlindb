@@ -14,7 +14,7 @@ with BerlinDB a little easier helps keep your code DRY.
 
 ### Using Composer
 
-`composer require underpin/berlin-db-extension`
+`composer require underpin/berlindb-extension`
 
 ### Manually
 
