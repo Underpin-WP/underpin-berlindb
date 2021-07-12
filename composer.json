@@ -2,7 +2,7 @@
   "name": "underpin/berlindb-extension",
   "description": "BerlinDB Implementation for Underpin",
   "type": "library",
-  "license": "GPL",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Alex Standiford",

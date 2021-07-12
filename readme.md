@@ -14,7 +14,7 @@ with BerlinDB a little easier helps keep your code DRY.
 
 ### Using Composer
 
-`composer require underpin/berlin-db-extension`
+`composer require underpin/berlindb-extension`
 
 ### Manually
 
@@ -77,10 +77,10 @@ The model includes a handful of helper functions to make it a little easier to u
 // Automatically sanitize, and then create/update a record.
 // If the provided arguments include an ID, it will update that record.
 // Otherwise, it will simply create a new record.
-$id = underpin()->berlin_db()->save( [/*...*/] );
+$id = underpin()->berlin_db()->get('example')->save( [/*...*/] );
 
 // Delete a record
-$deleted = underpin()->berlin_db()->delete( $id );
+$deleted = underpin()->berlin_db()->get('example')->delete( $id );
 ```
 
 ## Table Setup
