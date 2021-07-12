@@ -9,13 +9,6 @@
       "email": "a@alexstandiford.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/berlindb/core.git",
-      "reference": "release/2.0.0"
-    }
-  ],
   "require": {
     "berlindb/core": "dev-release/2.0.0",
     "underpin/underpin": "1.2.*"
