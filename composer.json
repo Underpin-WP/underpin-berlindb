@@ -10,8 +10,8 @@
     }
   ],
   "require": {
-    "berlindb/core": "2.0.*",
-    "underpin/underpin": "1.2.*"
+    "berlindb/core": "^2.0",
+    "underpin/underpin": "^1.2"
   },
   "autoload": {
     "files": [
