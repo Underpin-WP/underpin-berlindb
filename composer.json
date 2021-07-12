@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "berlindb/core": "dev-release/2.0.0",
+    "berlindb/core": "2.0.*",
     "underpin/underpin": "1.2.*"
   },
   "autoload": {
