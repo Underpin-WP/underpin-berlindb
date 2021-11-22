@@ -8,7 +8,7 @@
 
 
 namespace Underpin_BerlinDB\Loaders;
-use Underpin\Abstracts\Registries\Loader_Registry;
+use Underpin\Abstracts\Registries\Object_Registry;
 use Underpin_BerlinDB\Abstracts\Database_Model;
 use WP_Error;
 
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since   1.0.0
  * @package Underpin_BerlinDB\Loaders
  */
-class Database extends Loader_Registry {
+class Database extends Object_Registry {
 
 	/**
 	 * @inheritDoc
