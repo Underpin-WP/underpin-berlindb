@@ -11,7 +11,7 @@
   ],
   "require": {
     "berlindb/core": "^2.0",
-    "underpin/underpin": "^1.2"
+    "underpin/underpin": "^2.0"
   },
   "autoload": {
     "files": [
