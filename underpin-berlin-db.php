@@ -19,7 +19,7 @@ Underpin::attach( 'setup', new \Underpin\Factories\Observer( 'berlin_db', [
 		require_once( UNDERPIN_BERLIN_DB_PATH . 'lib/factories/Database_Model_With_Meta_Instance.php' );
 
 		$plugin->loaders()->add( 'berlin_db', [
-			'registry' => 'Underpin_BerlinDB\Loaders\Database',
+			'class' => 'Underpin_BerlinDB\Loaders\Database',
 		] );
 	},
 ] ) );
