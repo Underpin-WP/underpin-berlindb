@@ -1,9 +1,9 @@
 <?php
 
-namespace Underpin_BerlinDB\Factories;
+namespace Underpin\BerlinDB\Factories;
 
 use Underpin\Traits\Instance_Setter;
-use Underpin_BerlinDB\Abstracts\Database_Model;
+use Underpin\BerlinDB\Abstracts\Database_Model;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

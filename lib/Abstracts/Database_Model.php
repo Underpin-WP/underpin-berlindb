@@ -7,13 +7,14 @@
  */
 
 
-namespace Underpin_BerlinDB\Abstracts;
+namespace Underpin\BerlinDB\Abstracts;
 
 
 use \BerlinDB\Database\Schema;
 use \BerlinDB\Database\Table;
 use \BerlinDB\Database\Query;
-use function Underpin\underpin;
+
+use Underpin\Loaders\Logger;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -107,7 +108,7 @@ abstract class Database_Model {
 
 		// Log errors if something went wrong.
 		if ( $this->errors->has_errors() ) {
-			underpin()->logger()->log(
+			Logger::log(
 				'error',
 				'failed_to_create_database_model',
 				'A database model failed to be created',
@@ -175,7 +176,7 @@ abstract class Database_Model {
 
 		if ( ! $this->table()->exists() ) {
 			$this->table()->install();
-			underpin()->logger()->log(
+			Logger::log(
 				'notice',
 				'table_installed',
 				'The table ' . $this->name . ' has been installed successfully.'
@@ -200,7 +201,7 @@ abstract class Database_Model {
 		if ( $this->table()->exists() ) {
 			$this->table()->uninstall();
 			wp_cache_flush();
-			underpin()->logger()->log(
+			Logger::log(
 				'notice',
 				'table_uninstalled',
 				'The table ' . $this->name . ' has been uninstalled successfully.'

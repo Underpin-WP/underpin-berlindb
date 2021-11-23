@@ -1,11 +1,11 @@
 <?php
 
-namespace Underpin_BerlinDB\Factories;
+namespace Underpin\BerlinDB\Factories;
 
 use BerlinDB\Database\Table;
 use Underpin\Traits\Instance_Setter;
-use Underpin_BerlinDB\Abstracts\Database_Model;
-use Underpin_BerlinDB\Traits\With_Meta;
+use Underpin\BerlinDB\Abstracts\Database_Model;
+use Underpin\BerlinDB\Traits\With_Meta;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {

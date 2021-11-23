@@ -3,13 +3,13 @@
  * Database Loader
  *
  * @since   1.0.0
- * @package Underpin_BerlinDB\Loaders
+ * @package Underpin\BerlinDB\Loaders
  */
 
 
-namespace Underpin_BerlinDB\Loaders;
+namespace Underpin\BerlinDB\Loaders;
 use Underpin\Abstracts\Registries\Object_Registry;
-use Underpin_BerlinDB\Abstracts\Database_Model;
+use Underpin\BerlinDB\Abstracts\Database_Model;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,16 +21,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Database Registry
  *
  * @since   1.0.0
- * @package Underpin_BerlinDB\Loaders
+ * @package Underpin\BerlinDB\Loaders
  */
 class Database extends Object_Registry {
 
 	/**
 	 * @inheritDoc
 	 */
-	protected $abstraction_class = '\Underpin_BerlinDB\Abstracts\Database_Model';
+	protected $abstraction_class = '\Underpin\BerlinDB\Abstracts\Database_Model';
 
-	protected $default_factory = '\Underpin_BerlinDB\Factories\Database_Model_Instance';
+	protected $default_factory = '\Underpin\BerlinDB\Factories\Database_Model_Instance';
 
 	/**
 	 * @inheritDoc
